@@ -57,7 +57,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                 $n = 0;
                 $subject = file_get_contents($fileName);
                 $replacedSubject = preg_replace_callback(
-                    '/\b' . $currentTranslator . '\s*\(\s*(\'.*?(?<!\\\\)\'|".*?(?<!\\\\)")\s*,\s*(\'.*?(?<!\\\\)\'|".*?(?<!\\\\)")\s*[,\)]/s',
+                    '/\b(?:\\\\)?' . $currentTranslator . '\s*\(\s*(\'.*?(?<!\\\\)\'|".*?(?<!\\\\)")\s*,\s*(\'.*?(?<!\\\\)\'|".*?(?<!\\\\)")\s*[,\)]/s',
                     function($matches) use ($newSourcelanguage, $fileName, &$unremoved){
                         $category = substr($matches[1], 1, -1);
                         $message = $matches[2];
